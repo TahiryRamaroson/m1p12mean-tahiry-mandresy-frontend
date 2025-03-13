@@ -33,15 +33,10 @@ export class AppMenu {
                     routerLink: ['/pages'],
                     items: [
                         {
-                            label: 'Accueil Client',
-                            icon: 'pi pi-fw pi-circle-off',
+                            label: 'Accueil',
+                            icon: 'pi pi-fw pi-home',
                             routerLink: ['/accueilClient']
                         },
-                        {
-                            label: 'Demande de devis Client',
-                            icon: 'pi pi-fw pi-circle-off',
-                            routerLink: ['/demandeDevisClient']
-                        }
                     ]
                 },
             ]
