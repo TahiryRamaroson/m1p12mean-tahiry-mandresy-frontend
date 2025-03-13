@@ -49,17 +49,20 @@ export class AppMenu {
 
         else if(profil == "manager") {
             this.model = [
-            
                 {
-                    label: '',
-                    icon: 'pi pi-fw pi-briefcase',
-                    routerLink: ['/pages'],
+                    label: 'Tableau de bord',
                     items: [
-                        {
-                            label: 'Accueil Manager',
-                            icon: 'pi pi-fw pi-circle-off',
-                            routerLink: ['/accueilManager']
-                        },
+                        { label: 'Satisfaction client', icon: 'pi pi-fw pi-chart-line', routerLink: ['/satisfactionClient'] },
+                        { label: 'Chiffre d`affaire', icon: 'pi pi-fw pi-wallet', routerLink: [''] },
+                        { label: 'Facturation', icon: 'pi pi-fw pi-chart-bar', class: 'rotated-icon', routerLink: [''] }
+                    ]
+                },
+                {
+                    label: 'Mes Taches',
+                    items: [
+                        { label: 'Gestion mécanicien', icon: 'pi pi-fw pi-wrench', routerLink: ['/gestionMecanicienComponent'] },
+                        { label: 'Gestion rendez-vous', icon: 'pi pi-fw pi-calendar-clock', routerLink: [''] },
+                        { label: 'Réponse aux devis', icon: 'pi pi-fw pi-send', class: 'rotated-icon', routerLink: [''] }
                     ]
                 },
             ]
