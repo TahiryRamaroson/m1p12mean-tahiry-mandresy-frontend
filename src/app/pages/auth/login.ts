@@ -56,7 +56,7 @@ export class Login {
             this.sessionService.setSession('profil', this.email);
 
             if(this.email == "client") this.router.navigate(['/accueilClient']);
-            else if(this.email == "manager") this.router.navigate(['/accueilManager']);
+            else if(this.email == "manager") this.router.navigate(['/satisfactionClient']);
             else if(this.email == "mecanicien") this.router.navigate(['/accueilMecanicien']);
     }
 }
