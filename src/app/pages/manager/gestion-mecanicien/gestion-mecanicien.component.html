@@ -1,0 +1,221 @@
+<div class="card">
+    <div class="font-semibold text-xl mb-4">Liste des mécaniciens</div>
+    <p-table
+        [value]="mecaniciens"
+        [rowHover]="true"
+        [showGridlines]="true"
+        responsiveLayout="scroll"
+        class="custom-table" 
+    >
+    <ng-template #caption>
+        <div class="flex justify-between items-center flex-column sm:flex-row">
+            <button pButton label="NOUVEAU" (click)="openModalAjouter('topleft')" class="p-button-outlined mb-2" icon="pi pi-user-plus"></button>
+            <div class="flex gap-2 ml-auto">
+                <button (click)="openModalFilter('top')" pButton label="FILTRER" class="p-button-primary" icon="pi pi-filter"></button>
+                <p-button class="p-button-outlined" icon="pi pi-filter-slash" severity="danger"/>
+            </div>
+        </div>
+    </ng-template>
+
+        <ng-template #header>
+            <tr>
+                <th style="min-width: 8rem">Id</th>
+                <th style="min-width: 12rem">Nom & Prenom</th>
+                <th style="min-width: 10rem">Date de naissance</th>
+                <th style="min-width: 10rem">Date d'inscription</th>
+                <th style="min-width: 5rem">Statut</th>
+                <th style="min-width: 1rem"></th>
+                <th style="min-width: 1rem"></th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-person>
+            <tr>
+              <td>{{ person.id }}</td>
+              <td>{{ person.nom}} {{ person.prenom }}</td>
+              <td>{{ person.dateNaissance }}</td>
+              <td>{{ person.dateInscription }}</td>
+              <td> <p-tag severity="info" value="Activé" /> </td>
+              <td><p-button (click)="openModalDetail('center' , person)" icon="pi pi-eye" severity="help" rounded outlined pTooltip="plus de détails"/></td>
+              <td><p-button (click)="openModalModifier('topright')" severity="secondary" icon="pi pi-pencil" rounded outlined pTooltip="modifier"/></td>
+            </tr>
+          </ng-template>
+
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="6">No products found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <!-- Pagination -->
+    <div class="card flex justify-center">
+        <p-paginator
+            [first]="0"
+            [rows]="10"
+            [totalRecords]="120"
+            [showCurrentPageReport]="true"
+            [showJumpToPageDropdown]="false"
+            currentPageReportTemplate="Affiché {first} à {last} pour {totalRecords}" 
+        />
+    </div>
+</div>
+
+<p-dialog header="Option du filtre" [(visible)]="visiblefiltre" [position]="positionModal" [modal]="true" >
+    <div class="flex items-center gap-4 mb-8">
+        <label for="specialite" class="font-semibold w-24"> Specialité </label>
+        <p-select [options]="specialites" id="specialite" class="flex-auto" placeholder="Sélectionner une spécialité" [editable]="true" optionLabel="name" optionValue="id" />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="id" class="font-semibold w-24">Id</label>
+        <input pInputText id="id" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="nom&prenom" class="font-semibold w-24">Nom & prenom</label>
+        <input pInputText id="nom&prenom" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="datenaissance" class="font-semibold w-24">Date de naissance</label>
+        <p-datepicker [appendTo]="'body'" [showIcon]="true" [showButtonBar]="true" ></p-datepicker>
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="dateinscription" class="font-semibold w-24">Date d'inscription</label>
+        <p-datepicker [appendTo]="'body'" [showIcon]="true" [showButtonBar]="true" ></p-datepicker>
+    </div>
+    <div class="flex justify-end gap-2">
+        <p-button label="Annuler" severity="secondary" (click)="visiblefiltre = false" />
+        <p-button label="Filtrer" [loading]="loading" (click)="load()" />
+    </div>
+</p-dialog>
+
+
+<p-dialog header="Détail du mécaniciens MECA000 " [(visible)]="visibledetail" [position]="positionModal" [modal]="true" >
+    <p-accordion value="0">
+        <p-accordion-panel value="0">
+            <p-accordion-header>Info personnel</p-accordion-header>
+            <p-accordion-content>
+                <p-card>
+                    <div class="p-fluid">
+                        <div class="flex items-center gap-4 mb-4">
+                            <label for="id" class="w-32">Id</label>
+                            <input id="id" type="text" pInputText value="MECA001" readonly class="flex-auto" />
+                        </div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <label for="nom" class="w-32">Nom</label>
+                            <input id="nom" type="text" pInputText value="Doe" readonly class="flex-auto" />
+                        </div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <label for="prenom" class="w-32">Prenom</label>
+                            <input id="prenom" type="text" pInputText value="John" readonly class="flex-auto" />
+                        </div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <label for="dateNaissance" class="w-32">Date de naissance</label>
+                            <input id="dateNaissance" type="text" pInputText value="01/01/1980" readonly class="flex-auto" />
+                        </div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <label for="dateInscription" class="w-32">Date d'inscription</label>
+                            <input id="dateInscription" type="text" pInputText value="01/01/2020" readonly class="flex-auto" />
+                        </div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <label for="email" class="w-32">Email</label>
+                            <input id="email" type="text" pInputText value="john.doe@example.com" readonly class="flex-auto" />
+                        </div>
+                    </div>
+                </p-card>
+            </p-accordion-content>
+        </p-accordion-panel>
+
+        <p-accordion-panel value="1">
+            <p-accordion-header>Spécialités</p-accordion-header>
+            <p-accordion-content>
+                <p-table [value]="selectedMecanicienSpecialites" responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom de la spécialité</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-specialite>
+                        <tr>
+                            <td>{{ specialite.id }}</td>
+                            <td>{{ specialite.name }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </p-accordion-content>
+        </p-accordion-panel>
+    </p-accordion>
+</p-dialog>
+
+
+<p-dialog header="Ajouter nouveau mécanicien" [(visible)]="visibleajouter" [position]="positionModal" [modal]="true">
+    <div class="flex items-center gap-4 mb-4">
+        <label for="nom" class="w-32">Nom</label>
+        <input id="nom" type="text" pInputText class="flex-auto" />
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="prenom" class="w-32">Prenom</label>
+        <input id="prenom" type="text" pInputText class="flex-auto" />
+    </div>
+    <div class="flex gap-4 mb-4">
+        <div class="flex items-center gap-4 flex-auto">
+            <label for="dateNaissance" class="w-32">Date de naissance</label>
+            <p-datepicker id="dateNaissance" [appendTo]="'body'" [showIcon]="true" [showButtonBar]="true" class="flex-auto"></p-datepicker>
+        </div>
+        <div class="flex items-center gap-4 flex-auto">
+            <label for="specialite" class="w-32">Spécialité</label>
+            <p-multiSelect [appendTo]="'body'" [options]="specialites" id="specialite" class="flex-auto" placeholder="Sélectionner des spécialités" optionLabel="name" optionValue="id"></p-multiSelect>
+        </div>
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="email" class="w-32">Email</label>
+        <input id="email" type="email" pInputText class="flex-auto" />
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="password" class="w-32">Mot de passe</label>
+        <input id="password" type="password" pInputText class="flex-auto" />
+    </div>
+    
+    <div class="flex justify-end gap-2">
+        <p-button label="Annuler" severity="secondary" (click)="visibleajouter = false" />
+        <p-button label="Enregistrer" icon="pi pi-check" (click)="visibleajouter = false" />
+    </div>
+</p-dialog>
+
+
+<p-dialog header="Modifier le mécanicien MECA00" [(visible)]="visiblemodifier" [position]="positionModal" [modal]="true">
+    <div class="flex items-center gap-4 mb-4">
+        <label for="nom" class="w-32">Nom</label>
+        <input id="nom" type="text" pInputText class="flex-auto" />
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="prenom" class="w-32">Prenom</label>
+        <input id="prenom" type="text" pInputText class="flex-auto" />
+    </div>
+    <div class="flex gap-4 mb-4">
+        <div class="flex items-center gap-4 flex-auto">
+            <label for="dateNaissance" class="w-32">Date de naissance</label>
+            <p-datepicker id="dateNaissance" [appendTo]="'body'" [showIcon]="true" [showButtonBar]="true" class="flex-auto"></p-datepicker>
+        </div>
+        <div class="flex items-center gap-4 flex-auto">
+            <label for="specialite" class="w-32">Spécialité</label>
+            <p-multiSelect [appendTo]="'body'" [options]="specialites" id="specialite" class="flex-auto" placeholder="Sélectionner des spécialités" optionLabel="name" optionValue="id"></p-multiSelect>
+        </div>
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="email" class="w-32">Email</label>
+        <input id="email" type="email" pInputText class="flex-auto" />
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="password" class="w-32">Mot de passe</label>
+        <input id="password" type="password" pInputText class="flex-auto" />
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="status" class="w-32">Statut</label>
+        <p-selectbutton [options]="stateOptions" [(ngModel)]="valuestatut" optionLabel="label" optionValue="value" aria-labelledby="basic"></p-selectbutton>
+    </div>
+    <div class="flex justify-end gap-2">
+        <p-button label="Annuler" severity="secondary" (click)="visiblemodifier = false" />
+        <p-button label="Enregistrer" icon="pi pi-check" (click)="visiblemodifier = false" />
+    </div>
+</p-dialog>
