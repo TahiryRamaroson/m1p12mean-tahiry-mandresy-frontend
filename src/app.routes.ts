@@ -3,6 +3,7 @@ import { AppLayout } from './app/layout/component/app.layout';
 import { Notfound } from './app/pages/notfound/notfound';
 import { Login } from './app/pages/auth/login';
 import { AccueilClientComponent } from './app/pages/client/accueil-client/accueil-client.component';
+import { DemandeDevisClientComponent } from './app/pages/client/demande-devis-client/demande-devis-client.component';
 import { AccueilManager } from './app/pages/manager/accueilManager';
 import { AccueilMecanicien } from './app/pages/mecanicien/accueilMecanicien';
 
@@ -15,6 +16,7 @@ export const appRoutes: Routes = [
         component: AppLayout,
         children: [
             { path: 'accueilClient', component: AccueilClientComponent },
+            { path: 'demandeDevisClient', component: DemandeDevisClientComponent },
             { path: 'accueilManager', component: AccueilManager },
             { path: 'accueilMecanicien', component: AccueilMecanicien },
         ]
