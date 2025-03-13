@@ -2,8 +2,7 @@ import { Routes } from '@angular/router';
 import { AppLayout } from './app/layout/component/app.layout';
 import { Notfound } from './app/pages/notfound/notfound';
 import { Login } from './app/pages/auth/login';
-import { AccueilClient } from './app/pages/client/accueilClient';
-import { DemandeDevisClient } from './app/pages/client/demandeDevisClient';
+import { AccueilClientComponent } from './app/pages/client/accueil-client/accueil-client.component';
 import { AccueilManager } from './app/pages/manager/accueilManager';
 import { AccueilMecanicien } from './app/pages/mecanicien/accueilMecanicien';
 
@@ -15,8 +14,7 @@ export const appRoutes: Routes = [
         path: '',
         component: AppLayout,
         children: [
-            { path: 'accueilClient', component: AccueilClient },
-            { path: 'demandeDevisClient', component: DemandeDevisClient },
+            { path: 'accueilClient', component: AccueilClientComponent },
             { path: 'accueilManager', component: AccueilManager },
             { path: 'accueilMecanicien', component: AccueilMecanicien },
         ]
