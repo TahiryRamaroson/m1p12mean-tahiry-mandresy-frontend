@@ -37,6 +37,11 @@ export class AppMenu {
                             icon: 'pi pi-fw pi-home',
                             routerLink: ['/accueilClient']
                         },
+                        {
+                            label: 'Mes demandes de devis',
+                            icon: 'pi pi-fw pi-file',
+                            routerLink: ['/demandeDevisClient']
+                        },
                     ]
                 },
             ]
