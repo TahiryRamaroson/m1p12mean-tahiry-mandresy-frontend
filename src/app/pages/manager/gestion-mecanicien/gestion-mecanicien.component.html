@@ -39,7 +39,7 @@
               <td><p-button (click)="openModalDetail('center' , person)" icon="pi pi-eye" severity="help" rounded outlined pTooltip="plus de détails"/></td>
               <td><p-button (click)="openModalModifier('topright')" severity="secondary" icon="pi pi-pencil" rounded outlined pTooltip="modifier"/></td>
             </tr>
-          </ng-template>
+        </ng-template>
 
         <ng-template #emptymessage>
             <tr>
@@ -62,25 +62,25 @@
 </div>
 
 <p-dialog header="Option du filtre" [(visible)]="visiblefiltre" [position]="positionModal" [modal]="true" >
-    <div class="flex items-center gap-4 mb-8">
+    <div class="flex items-center gap-2 mb-8">
         <label for="specialite" class="font-semibold w-24"> Specialité </label>
         <p-select [options]="specialites" id="specialite" class="flex-auto" placeholder="Sélectionner une spécialité" [editable]="true" optionLabel="name" optionValue="id" />
     </div>
-    <div class="flex items-center gap-4 mb-8">
+    <div class="flex items-center gap-2 mb-8">
         <label for="id" class="font-semibold w-24">Id</label>
         <input pInputText id="id" class="flex-auto" autocomplete="off" />
     </div>
-    <div class="flex items-center gap-4 mb-8">
+    <div class="flex items-center gap-2 mb-8">
         <label for="nom&prenom" class="font-semibold w-24">Nom & prenom</label>
         <input pInputText id="nom&prenom" class="flex-auto" autocomplete="off" />
     </div>
-    <div class="flex items-center gap-4 mb-8">
+    <div class="flex items-center gap-2 mb-8">
         <label for="datenaissance" class="font-semibold w-24">Date de naissance</label>
-        <p-datepicker [appendTo]="'body'" [showIcon]="true" [showButtonBar]="true" ></p-datepicker>
+        <p-datepicker [appendTo]="'body'"  [showIcon]="true" [showButtonBar]="true" ></p-datepicker>
     </div>
-    <div class="flex items-center gap-4 mb-8">
+    <div class="flex items-center gap-2 mb-8">
         <label for="dateinscription" class="font-semibold w-24">Date d'inscription</label>
-        <p-datepicker [appendTo]="'body'" [showIcon]="true" [showButtonBar]="true" ></p-datepicker>
+        <p-datepicker [appendTo]="'body'"[showIcon]="true" [showButtonBar]="true" ></p-datepicker>
     </div>
     <div class="flex justify-end gap-2">
         <p-button label="Annuler" severity="secondary" (click)="visiblefiltre = false" />
@@ -95,31 +95,29 @@
             <p-accordion-header>Info personnel</p-accordion-header>
             <p-accordion-content>
                 <p-card>
-                    <div class="p-fluid">
-                        <div class="flex items-center gap-4 mb-4">
-                            <label for="id" class="w-32">Id</label>
-                            <input id="id" type="text" pInputText value="MECA001" readonly class="flex-auto" />
-                        </div>
-                        <div class="flex items-center gap-4 mb-4">
-                            <label for="nom" class="w-32">Nom</label>
-                            <input id="nom" type="text" pInputText value="Doe" readonly class="flex-auto" />
-                        </div>
-                        <div class="flex items-center gap-4 mb-4">
-                            <label for="prenom" class="w-32">Prenom</label>
-                            <input id="prenom" type="text" pInputText value="John" readonly class="flex-auto" />
-                        </div>
-                        <div class="flex items-center gap-4 mb-4">
-                            <label for="dateNaissance" class="w-32">Date de naissance</label>
-                            <input id="dateNaissance" type="text" pInputText value="01/01/1980" readonly class="flex-auto" />
-                        </div>
-                        <div class="flex items-center gap-4 mb-4">
-                            <label for="dateInscription" class="w-32">Date d'inscription</label>
-                            <input id="dateInscription" type="text" pInputText value="01/01/2020" readonly class="flex-auto" />
-                        </div>
-                        <div class="flex items-center gap-4 mb-4">
-                            <label for="email" class="w-32">Email</label>
-                            <input id="email" type="text" pInputText value="john.doe@example.com" readonly class="flex-auto" />
-                        </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <label for="id" class="w-32">Id</label>
+                        <input id="id" type="text" pInputText value="MECA001" readonly class="flex-auto" />
+                    </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <label for="nom" class="w-32">Nom</label>
+                        <input id="nom" type="text" pInputText value="Doe" readonly class="flex-auto" />
+                    </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <label for="prenom" class="w-32">Prenom</label>
+                        <input id="prenom" type="text" pInputText value="John" readonly class="flex-auto" />
+                    </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <label for="dateNaissance" class="w-32">Date de naissance</label>
+                        <input id="dateNaissance" type="text" pInputText value="01/01/1980" readonly class="flex-auto" />
+                    </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <label for="dateInscription" class="w-32">Date d'inscription</label>
+                        <input id="dateInscription" type="text" pInputText value="01/01/2020" readonly class="flex-auto" />
+                    </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <label for="email" class="w-32">Email</label>
+                        <input id="email" type="text" pInputText value="john.doe@example.com" readonly class="flex-auto" />
                     </div>
                 </p-card>
             </p-accordion-content>

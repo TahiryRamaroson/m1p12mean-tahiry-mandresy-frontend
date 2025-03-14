@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputTextModule } from 'primeng/inputtext';
@@ -8,7 +9,6 @@ import { Tag } from 'primeng/tag';
 import { Tooltip } from 'primeng/tooltip';
 import { Dialog } from 'primeng/dialog';
 import { Select } from 'primeng/select';
-import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
 import { AccordionModule } from 'primeng/accordion';
 import { CardModule } from 'primeng/card';
@@ -61,7 +61,6 @@ export class GestionMecanicienComponent {
   positionModal: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright' = 'center';
   
   //modals filtre
-  visiblefiltre: boolean = false;
   loading: boolean = false;
   load() {
       this.loading = true;
@@ -70,6 +69,7 @@ export class GestionMecanicienComponent {
           this.loading = false
       }, 1000);
   }
+  visiblefiltre: boolean = false;
   openModalFilter(postition: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright') {
     this.positionModal = postition;
     this.visiblefiltre = true;
@@ -92,11 +92,12 @@ export class GestionMecanicienComponent {
   }
 
   //modals modifier
+  stateOptions: any[] = [{ label: 'Activé', value: 1 },{ label: 'Desactivé', value: 0 }];
+  valuestatut: number = 1;
   visiblemodifier: boolean = false;
   openModalModifier(postition: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright') {
     this.positionModal = postition;
     this.visiblemodifier = true;
   }
-  stateOptions: any[] = [{ label: 'Activé', value: 1 },{ label: 'Desactivé', value: 0 }];
-  valuestatut: number = 1;
+
 }
