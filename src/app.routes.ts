@@ -2,8 +2,12 @@ import { Routes } from '@angular/router';
 import { AppLayout } from './app/layout/component/app.layout';
 import { Notfound } from './app/pages/notfound/notfound';
 import { Login } from './app/pages/auth/login';
+
 import { AccueilClientComponent } from './app/pages/client/accueil-client/accueil-client.component';
 import { DemandeDevisClientComponent } from './app/pages/client/demande-devis-client/demande-devis-client.component';
+import { DetailsDemandeDevisClientComponent } from './app/pages/client/details-demande-devis-client/details-demande-devis-client.component';
+import { DemandeRendezVousClientComponent } from './app/pages/client/demande-rendez-vous-client/demande-rendez-vous-client.component';
+import { VehiculesClientComponent } from './app/pages/client/vehicules-client/vehicules-client.component';
 
 import { AccueilMecanicien } from './app/pages/mecanicien/accueilMecanicien';
 
@@ -21,6 +25,9 @@ export const appRoutes: Routes = [
         children: [
             { path: 'accueilClient', component: AccueilClientComponent },
             { path: 'demandeDevisClient', component: DemandeDevisClientComponent },
+            { path: 'detailsDemandeDevisClient', component: DetailsDemandeDevisClientComponent },
+            { path: 'demandeRendezVousClient', component: DemandeRendezVousClientComponent },
+            { path: 'vehiculesClient', component: VehiculesClientComponent },
 
             { path: 'satisfactionClient', component: SatisfactionClientComponent },
             { path: 'gestionMecanicienComponent', component: GestionMecanicienComponent },

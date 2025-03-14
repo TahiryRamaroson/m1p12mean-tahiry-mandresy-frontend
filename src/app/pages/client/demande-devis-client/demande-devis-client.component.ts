@@ -18,8 +18,8 @@ export class DemandeDevisClientComponent implements OnInit {
 
   ngOnInit() {
     this.demandesDevis = [
-      { marque: 'Toyota', modele: 'Corolla', immatriculation: 'AB-123-CD', dateDemande: new Date(), statut: 'En attente de réponse', color: "bg-yellow-500" },
-      { marque: 'Peugeot', modele: '208', immatriculation: 'EF-456-GH', dateDemande: new Date(), statut: 'Reçu', color: "bg-green-500" },
+      { numero: 'xxxxxx1', marque: 'Toyota', modele: 'Corolla', immatriculation: 'AB-123-CD', dateDemande: new Date(), statut: 'En attente de réponse', color: "bg-yellow-500" },
+      { numero: 'xxxxxx2', marque: 'Peugeot', modele: '208', immatriculation: 'EF-456-GH', dateDemande: new Date(), statut: 'Reçu', color: "bg-green-500" },
       // Ajoutez d'autres demandes ici...
     ];
   }

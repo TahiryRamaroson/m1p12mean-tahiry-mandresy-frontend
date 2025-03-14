@@ -1,0 +1,51 @@
+<div class="card">
+    <h3 class="p-card-title text-[#10B981] text-center">Détails du devis n°xxxxxxx</h3>
+    <div class="flex justify-between items-center">
+        <div>
+            <p><strong>Véhicule :</strong> Peugeot 208</p>
+            <p><strong>Immatriculation :</strong> EF-456-GH</p>
+            <p><strong>Date de demande :</strong> March 14, 2025</p>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+            <p-button label="Exporter le devis" icon="pi pi-file-pdf" (click)="exporterPDF()"></p-button>
+            <p-button label="Exporter une facture" icon="pi pi-file" (click)="exporterFacture()" outlined></p-button>
+        </div>
+    </div>
+    <div class="mt-8 p-10 shadow-lg rounded-lg">
+        <p-table [value]="detailsDevis" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th><strong>Service</strong></th>
+                    <th><strong>Unité</strong></th>
+                    <th><strong>Prix unitaire</strong></th>
+                    <th><strong>Montant</strong></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-detail>
+                <tr>
+                    <td colspan="4"><strong>{{ detail.service }}</strong> </td>
+                </tr>
+                <ng-container *ngFor="let sousCategorie of detail.sousCategories">
+                    <tr>
+                        <td>{{ sousCategorie.service }}</td>
+                        <td>{{ sousCategorie.unite }}</td>
+                        <td>{{ sousCategorie.prixUnitaire | currency }}</td>
+                        <td>{{ sousCategorie.montant | currency }}</td>
+                    </tr>
+                </ng-container>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <tr>
+                    <td colspan="3" class="text-right"><strong>Total :</strong></td>
+                    <td>{{ totalMontant | currency }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="mt-8 flex gap-2 flex-wrap items-center justify-center">
+        <p-button label="Refuser" icon="pi pi-times" severity="danger" raised></p-button>
+        <a href="demandeRendezVousClient">
+            <p-button label="Prendre rendez-vous" icon="pi pi-calendar" severity="info" raised></p-button>
+        </a>
+    </div>
+</div>
