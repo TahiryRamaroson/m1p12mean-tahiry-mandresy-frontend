@@ -42,6 +42,11 @@ export class AppMenu {
                             icon: 'pi pi-fw pi-file',
                             routerLink: ['/demandeDevisClient']
                         },
+                        {
+                            label: 'Mes véhicules',
+                            icon: 'pi pi-fw pi-car',
+                            routerLink: ['/vehiculesClient']
+                        },
                     ]
                 },
             ]
