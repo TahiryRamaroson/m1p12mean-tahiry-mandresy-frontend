@@ -1,0 +1,121 @@
+<div class="card p-4">
+    <h2 class="text-xl font-bold mb-8">Gérer mes véhicules</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!--Liste des véhicules-->
+        <div *ngFor="let vehicule of vehicules" class="card shadow-lg rounded-lg">
+            <img [src]="vehicule.photo" alt="Photo de {{ vehicule.marque }} {{ vehicule.modele }}" class="w-full h-48 object-cover rounded-lg">
+            <div class="p-4">
+                <h3 class="text-lg font-bold">{{ vehicule.marque }} {{ vehicule.modele }}</h3>
+                <p><strong>Année :</strong> {{ vehicule.annee }}</p>
+                <p><strong>Immatriculation :</strong> {{ vehicule.immatriculation }}</p>
+                <div class="flex justify-between mt-4">
+                    <p-button label="Modifier" icon="pi pi-pencil" (click)="showEditModal(vehicule)"></p-button>
+                    <p-button label="Supprimer" icon="pi pi-trash" (click)="supprimerVehicule(vehicule.id)" severity="danger"></p-button>
+                </div>
+                <div class="mt-4">
+                    <a href="" class="text-blue-500 hover:underline">Voir l'historique du véhicule</a>
+                </div>
+            </div>
+        </div>
+        <!--Card ajouter véhicule-->
+        <div class="card flex items-center justify-center cursor-pointer shadow-lg rounded-lg card-hover" (click)="showModal()">
+            <div class="flex flex-col items-center">
+                <i class="pi pi-plus text-6xl text-gray-500 text-hover"></i>
+                <p class="text-lg font-bold text-gray-500 mt-2 text-hover">Ajouter un véhicule</p>
+            </div>
+        </div>
+    </div>
+
+     <!-- Modal pour ajouter un véhicule -->
+     <p-dialog header="Ajouter un véhicule" [(visible)]="displayModal" [modal]="true" [closable]="true" [style]="{width: '50vw'}">
+        <form (ngSubmit)="ajouterVehicule()">
+            <div class="p-fluid">
+                <div class="p-field mt-4">
+                    <label for="marque">Marque</label>
+                    <select class="border-2 p-4 rounded-lg w-full" id="marque" [(ngModel)]="nouveauVehicule.marque" name="marque" required>
+                        <option *ngFor="let marque of marques" [value]="marque">{{ marque }}</option>
+                    </select>
+                </div>
+                <div class="p-field mt-4">
+                    <label for="modele">Modèle</label>
+                    <select class="border-2 p-4 rounded-lg w-full" id="modele" [(ngModel)]="nouveauVehicule.modele" name="modele" required>
+                        <option *ngFor="let modele of modeles[nouveauVehicule.marque]" [value]="modele">{{ modele }}</option>
+                    </select>
+                </div>
+                <div class="p-field mt-4">
+                    <label for="annee">Année</label>
+                    <input class="border-2 p-4 rounded-lg w-full" placeholder="Année" id="annee" type="number" pInputText [(ngModel)]="nouveauVehicule.annee" name="annee" required>
+                </div>
+                <div class="p-field mt-4">
+                    <label for="immatriculation">Immatriculation</label>
+                    <input class="border-2 p-4 rounded-lg w-full" id="immatriculation" type="text" pInputText [(ngModel)]="nouveauVehicule.immatriculation" name="immatriculation" required>
+                </div>
+                <div class="p-field mt-4">
+                    <p-fileupload name="photo" (onSelect)="onSelect($event)" [multiple]="false" accept="image/*" maxFileSize="1000000" mode="advanced" url="https://www.primefaces.org/cdn/api/upload.php">
+                        <ng-template #empty>
+                            <div>Déposez vos photos ici</div>
+                        </ng-template>
+                        <ng-template #content>
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileupload>
+                </div>
+            </div>
+            <div class="p-dialog-footer mt-4">
+                <p-button label="Ajouter" icon="pi pi-check" severity="info" type="submit"></p-button>
+            </div>
+        </form>
+    </p-dialog>
+
+    <!-- Modal pour modifier un véhicule -->
+    <p-dialog header="Modifier un véhicule" [(visible)]="displayEditModal" [modal]="true" [closable]="true" [style]="{width: '50vw'}">
+        <form (ngSubmit)="modifierVehicule()">
+            <div class="p-fluid">
+                <div class="p-field mt-4">
+                    <label for="marque">Marque</label>
+                    <select class="border-2 p-4 rounded-lg w-full" id="marque" [(ngModel)]="vehiculeEnCours.marque" name="marque" required>
+                        <option *ngFor="let marque of marques" [value]="marque">{{ marque }}</option>
+                    </select>
+                </div>
+                <div class="p-field mt-4">
+                    <label for="modele">Modèle</label>
+                    <select class="border-2 p-4 rounded-lg w-full" id="modele" [(ngModel)]="vehiculeEnCours.modele" name="modele" required>
+                        <option *ngFor="let modele of modeles[vehiculeEnCours.marque]" [value]="modele">{{ modele }}</option>
+                    </select>
+                </div>
+                <div class="p-field mt-4">
+                    <label for="annee">Année</label>
+                    <input class="border-2 p-4 rounded-lg w-full" placeholder="Année" id="annee" type="number" pInputText [(ngModel)]="vehiculeEnCours.annee" name="annee" required>
+                </div>
+                <div class="p-field mt-4">
+                    <label for="immatriculation">Immatriculation</label>
+                    <input class="border-2 p-4 rounded-lg w-full" id="immatriculation" type="text" pInputText [(ngModel)]="vehiculeEnCours.immatriculation" name="immatriculation" required>
+                </div>
+                <div class="p-field mt-4">
+                    <p-fileupload name="photo" (onSelect)="onSelectEdit($event)" [multiple]="false" accept="image/*" maxFileSize="1000000" mode="advanced">
+                        <ng-template #empty>
+                            <div>Déposez vos photos ici</div>
+                        </ng-template>
+                        <ng-template #content>
+                            <ul *ngIf="uploadedFilesEdit.length">
+                                <li *ngFor="let file of uploadedFilesEdit">{{ file.name }} - {{ file.size }} bytes</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileupload>
+                </div>
+            </div>
+            <div class="p-dialog-footer mt-4">
+                <p-button label="Modifier" icon="pi pi-check" severity="info" type="submit"></p-button>
+            </div>
+        </form>
+    </p-dialog>
+</div>
+
+<style>
+    .card-hover:hover .text-hover {
+    color: #1E90FF;
+    transition: all ease 0.3s;
+}
+</style>
