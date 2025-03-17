@@ -94,7 +94,7 @@ export class ReponseDevisComponent {
   outilsParDetail: { [key: number]: { libelle: string; prix: number }[] } = {};
   // Ajouter un nouvel outil à un détail
   ajouterOutil(detailId: number) {
-    this.outilsParDetail[detailId].push({ libelle: '', prix: 0 });
+    this.outilsParDetail[detailId].push({ libelle: '',prix: 0 });
   }
   // Supprimer un outil d'un détail
   supprimerOutil(detailId: number, index: number) {

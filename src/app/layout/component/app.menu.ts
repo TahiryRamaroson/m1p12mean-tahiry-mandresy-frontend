@@ -66,7 +66,7 @@ export class AppMenu {
                     label: 'Mes Taches',
                     items: [
                         { label: 'Gestion mécanicien', icon: 'pi pi-fw pi-wrench', routerLink: ['/gestionMecanicienComponent'] },
-                        { label: 'Gestion rendez-vous', icon: 'pi pi-fw pi-calendar-clock', routerLink: [''] },
+                        { label: 'Gestion rendez-vous', icon: 'pi pi-fw pi-calendar-clock', routerLink: ['/gestionRendezvous'] },
                         { label: 'Réponse aux devis', icon: 'pi pi-fw pi-send', class: 'rotated-icon', routerLink: ['/reponseDevis'] }
                     ]
                 },

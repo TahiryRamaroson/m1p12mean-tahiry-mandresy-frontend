@@ -14,6 +14,7 @@ import { AccueilMecanicien } from './app/pages/mecanicien/accueilMecanicien';
 import { SatisfactionClientComponent } from './app/pages/manager/satisfaction-client/satisfaction-client.component';
 import { GestionMecanicienComponent } from './app/pages/manager/gestion-mecanicien/gestion-mecanicien.component';
 import { ReponseDevisComponent } from './app/pages/manager/reponse-devis/reponse-devis.component';
+import { GestionRendezvousComponent } from './app/pages/manager/gestion-rendezvous/gestion-rendezvous.component';
 
 export const appRoutes: Routes = [
     { path: '', component: Login }, //rehefa vao miditra dia Login
@@ -32,6 +33,7 @@ export const appRoutes: Routes = [
             { path: 'satisfactionClient', component: SatisfactionClientComponent },
             { path: 'gestionMecanicienComponent', component: GestionMecanicienComponent },
             { path: 'reponseDevis', component: ReponseDevisComponent},
+            { path: 'gestionRendezvous', component: GestionRendezvousComponent },
             
             { path: 'accueilMecanicien', component: AccueilMecanicien },
         ]

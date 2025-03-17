@@ -64,7 +64,7 @@
 <p-dialog header="Option du filtre" [(visible)]="visiblefiltre" [position]="positionModal" [modal]="true" >
     <div class="flex items-center gap-2 mb-8">
         <label for="specialite" class="font-semibold w-24"> Specialité </label>
-        <p-select [options]="specialites" id="specialite" class="flex-auto" placeholder="Sélectionner une spécialité" [editable]="true" optionLabel="name" optionValue="id" />
+        <p-select [appendTo]="'body'" [options]="specialites" id="specialite" class="flex-auto" placeholder="Sélectionner une spécialité" [editable]="true" optionLabel="name" optionValue="id" />
     </div>
     <div class="flex items-center gap-2 mb-8">
         <label for="id" class="font-semibold w-24">Id</label>
@@ -80,7 +80,7 @@
     </div>
     <div class="flex items-center gap-2 mb-8">
         <label for="dateinscription" class="font-semibold w-24">Date d'inscription</label>
-        <p-datepicker [appendTo]="'body'"[showIcon]="true" [showButtonBar]="true" ></p-datepicker>
+        <p-datepicker [appendTo]="'body'" [showIcon]="true" [showButtonBar]="true" ></p-datepicker>
     </div>
     <div class="flex justify-end gap-2">
         <p-button label="Annuler" severity="secondary" (click)="visiblefiltre = false" />
