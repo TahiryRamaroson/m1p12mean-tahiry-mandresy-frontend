@@ -42,14 +42,14 @@ export class GestionRendezvousComponent {
       details: [
         { id:1, categorie: 'Mécanique', service: 'Changement de pneus', prix: 100,
           outils: [
-            { libelle: 'Pneu', prix: 50 },
-            { libelle: 'Boulons', prix: 10 }
+            { libelle: 'Pneu', unite: 1,prix: 50 },
+            { libelle: 'Boulons', unite: 2,prix: 10 }
           ]
         },
         { id:2, categorie: 'Entretien', service: 'Vidange', prix: 50,
           outils: [
-            { libelle: 'Huile', prix: 20 },
-            { libelle: 'Filtre', prix: 10 }
+            { libelle: 'Huile', unite: 1,prix: 20 },
+            { libelle: 'Filtre', unite: 2,prix: 10 }
           ]
         }
       ]
