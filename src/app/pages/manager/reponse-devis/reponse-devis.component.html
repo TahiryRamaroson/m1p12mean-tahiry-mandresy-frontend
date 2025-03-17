@@ -100,6 +100,11 @@
                             </div>
 
                             <div class="flex items-center gap-4 flex-auto">
+                                <label for="unite{{detail.id}}{{i}}" class="font-semibold w-24"> Unite </label>
+                                <input pInputText id="unite{{detail.id}}{{i}}" class="flex-auto" [(ngModel)]="outil.unite" type="number" />
+                            </div>
+
+                            <div class="flex items-center gap-4 flex-auto">
                                 <label for="prix{{detail.id}}{{i}}" class="font-semibold w-24"> Prix (en Ar) </label>
                                 <input pInputText id="prix{{detail.id}}{{i}}" class="flex-auto" [(ngModel)]="outil.prix" type="number" />
                             </div>

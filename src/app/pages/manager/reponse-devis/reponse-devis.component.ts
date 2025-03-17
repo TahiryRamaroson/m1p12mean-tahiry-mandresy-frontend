@@ -91,10 +91,10 @@ export class ReponseDevisComponent {
     })
   }
   // Stocker les outils pour chaque détail
-  outilsParDetail: { [key: number]: { libelle: string; prix: number }[] } = {};
+  outilsParDetail: { [key: number]: { libelle: string; unite:number; prix: number }[] } = {};
   // Ajouter un nouvel outil à un détail
   ajouterOutil(detailId: number) {
-    this.outilsParDetail[detailId].push({ libelle: '',prix: 0 });
+    this.outilsParDetail[detailId].push({ libelle: '',unite: 1,prix: 0 });
   }
   // Supprimer un outil d'un détail
   supprimerOutil(detailId: number, index: number) {
