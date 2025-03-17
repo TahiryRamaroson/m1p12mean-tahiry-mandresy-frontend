@@ -95,18 +95,18 @@
                            <!-- Boucle sur les outils ajoutés dynamiquement -->
                         <div *ngFor="let outil of outilsParDetail[detail.id]; let i = index" class="flex gap-4 mb-4 flex-wrap">
                             <div class="flex items-center gap-4 flex-auto">
-                                <label for="libelle{{detail.id}}{{i}}" class="font-semibold w-24">Libellé</label>
+                                <label for="libelle{{detail.id}}{{i}}" class="font-semibold w-24"> Libellé </label>
                                 <input pInputText id="libelle{{detail.id}}{{i}}" class="flex-auto" [(ngModel)]="outil.libelle" />
                             </div>
 
                             <div class="flex items-center gap-4 flex-auto">
-                                <label for="prix{{detail.id}}{{i}}" class="font-semibold w-24">Prix (en Ar)</label>
+                                <label for="prix{{detail.id}}{{i}}" class="font-semibold w-24"> Prix (en Ar) </label>
                                 <input pInputText id="prix{{detail.id}}{{i}}" class="flex-auto" [(ngModel)]="outil.prix" type="number" />
                             </div>
 
                             <!-- Bouton de suppression -->
                             <button pButton type="button" icon="pi pi-trash" severity="danger" (click)="supprimerOutil(detail.id, i)"></button>
-                    </div>
+                        </div>
                      <!-- Bouton pour ajouter un outil -->
                      <button outlined  pButton type="button" label="Ajouter un outil" icon="pi pi-plus" (click)="ajouterOutil(detail.id)"></button>
                     </p-card>
