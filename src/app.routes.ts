@@ -8,6 +8,7 @@ import { DemandeDevisClientComponent } from './app/pages/client/demande-devis-cl
 import { DetailsDemandeDevisClientComponent } from './app/pages/client/details-demande-devis-client/details-demande-devis-client.component';
 import { DemandeRendezVousClientComponent } from './app/pages/client/demande-rendez-vous-client/demande-rendez-vous-client.component';
 import { VehiculesClientComponent } from './app/pages/client/vehicules-client/vehicules-client.component';
+import { HistoriqueRendezVousClientComponent } from './app/pages/client/historique-rendez-vous-client/historique-rendez-vous-client.component';
 
 import { TacheMecaComponent } from './app/pages/mecanicien/tache-meca/tache-meca.component';
 
@@ -29,6 +30,7 @@ export const appRoutes: Routes = [
             { path: 'detailsDemandeDevisClient', component: DetailsDemandeDevisClientComponent },
             { path: 'demandeRendezVousClient', component: DemandeRendezVousClientComponent },
             { path: 'vehiculesClient', component: VehiculesClientComponent },
+            { path: 'historiqueRendezVousClient', component: HistoriqueRendezVousClientComponent },
 
             {path: 'tacheMeca', component: TacheMecaComponent},
 

@@ -47,6 +47,11 @@ export class AppMenu {
                             icon: 'pi pi-fw pi-car',
                             routerLink: ['/vehiculesClient']
                         },
+                        {
+                            label: 'Historiques de rendez-vous',
+                            icon: 'pi pi-fw pi-calendar',
+                            routerLink: ['/historiqueRendezVousClient']
+                        },
                     ]
                 },
             ]

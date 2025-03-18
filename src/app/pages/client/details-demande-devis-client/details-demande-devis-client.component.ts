@@ -48,8 +48,4 @@ export class DetailsDemandeDevisClientComponent {
   exporterPDF() {
     console.log('Exporter en PDF');
   }
-
-  exporterFacture() {
-    console.log('Exporter la facture');
-  }
 }
