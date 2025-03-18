@@ -57,6 +57,6 @@ export class Login {
 
             if(this.email == "client") this.router.navigate(['/accueilClient']);
             else if(this.email == "manager") this.router.navigate(['/satisfactionClient']);
-            else if(this.email == "mecanicien") this.router.navigate(['/accueilMecanicien']);
+            else if(this.email == "mecanicien") this.router.navigate(['/tacheMeca']);
     }
 }

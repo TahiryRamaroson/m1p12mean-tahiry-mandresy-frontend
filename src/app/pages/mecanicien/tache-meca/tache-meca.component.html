@@ -1,0 +1,147 @@
+<div class="card p-4">
+    <div class="flex flex-col lg:flex-row gap-4">
+        <!-- En attente validation -->
+        <div class="flex-1 w-full bg-pink-100 p-4 rounded-lg text-center shadow-md">
+            <i class="pi pi-clock text-pink-500 text-2xl"></i>
+            <h3 class="text-lg font-bold mt-2">En attente validation</h3>
+            <p-card header="Date rendez-vous : {{ rdv.dateRendezVous}} / ID : {{ rdv.id }}" *ngFor="let rdv of getRendezvousByStatut(1)" class="p-2 mt-2">
+                <button pButton class="p-button p-button-text p-button-rounded p-button-sm" (click)="handleEventClick(rdv)" pTooltip="plus de détails">
+                    <i class="pi pi-info-circle text-blue-500"></i>
+                </button>
+                <button pButton class="p-button p-button-text p-button-rounded p-button-sm" (click)="openModalDiscuter('bottomright')" pTooltip="discuter">
+                    <i class="pi pi-envelope text-gray-500"></i>
+                </button>
+            </p-card>
+        </div>
+
+        <!-- Prêt pour traitement -->
+        <div class="flex-1 w-full bg-orange-100 p-4 rounded-lg text-center shadow-md">
+            <i class="pi pi-check text-yellow-500 text-2xl"></i>
+            <h3 class="text-lg font-bold mt-2">Prêt pour traitement</h3>
+            <p-card header="Date rendez-vous : {{ rdv.dateRendezVous}} / ID : {{ rdv.id }}" *ngFor="let rdv of getRendezvousByStatut(2)" class="p-2 mt-2">
+                <button pButton class="p-button p-button-text p-button-rounded p-button-sm" (click)="handleEventClick(rdv)" pTooltip="plus de détails">
+                    <i class="pi pi-info-circle text-blue-500"></i>
+                </button>
+                <button pButton class="p-button p-button-text p-button-rounded p-button-sm" (click)="openModalDiscuter('bottomright')" pTooltip="discuter">
+                    <i class="pi pi-envelope text-gray-500"></i>
+                </button>
+            </p-card>
+        </div>
+
+        <!-- En cours -->
+        <div class="flex-1 w-full bg-blue-100 p-4 rounded-lg text-center shadow-md">
+            <i class="pi pi-spinner text-blue-500 text-2xl"></i>
+            <h3 class="text-lg font-bold mt-2">En cours</h3>
+            <p-card header="Date rendez-vous : {{ rdv.dateRendezVous}} / ID : {{ rdv.id }}" *ngFor="let rdv of getRendezvousByStatut(3)" class="p-2 mt-2">
+                <button pButton class="p-button p-button-text p-button-rounded p-button-sm" (click)="handleEventClick(rdv)" pTooltip="plus de détails">
+                    <i class="pi pi-info-circle text-blue-500"></i>
+                </button>
+                <button pButton class="p-button p-button-text p-button-rounded p-button-sm" (click)="openModalDiscuter('bottomright')" pTooltip="discuter">
+                    <i class="pi pi-envelope text-gray-500"></i>
+                </button>
+                <button pButton class="p-button p-button-text p-button-rounded p-button-sm" (click)="openModalValiderAcheve('center')" pTooltip="achever">
+                    <i class="pi pi-check text-green-600"></i>
+                </button>
+            </p-card>
+        </div>
+
+        <!-- Achevé -->
+        <div class="flex-1 w-full bg-green-100 p-4 rounded-lg text-center shadow-md">
+            <i class="pi pi-check-circle text-green-500 text-2xl"></i>
+            <h3 class="text-lg font-bold mt-2">Achevé</h3>
+            <p-card header="Date rendez-vous : {{ rdv.dateRendezVous}} / ID : {{ rdv.id }}" *ngFor="let rdv of getRendezvousByStatut(4)" class="p-2 mt-2">
+                <button pButton class="p-button p-button-text p-button-rounded p-button-sm" (click)="handleEventClick(rdv)" pTooltip="plus de détails">
+                    <i class="pi pi-info-circle text-blue-500"></i>
+                </button>
+                <button pButton class="p-button p-button-text p-button-rounded p-button-sm" (click)="openModalDiscuter('bottomright')" pTooltip="discuter">
+                    <i class="pi pi-envelope text-gray-500"></i>
+                </button>
+            </p-card>
+        </div>
+    </div>
+</div>
+
+
+
+<p-dialog header="Détails" [(visible)]="visibledetails" [position]="positionModal" [modal]="true" >
+    <p *ngIf="selectedRendezvous">
+        <strong>Client :</strong> {{ selectedRendezvous.client.nom }} {{ selectedRendezvous.client.prenom }} <br>
+        <strong>Voiture :</strong> {{ selectedRendezvous.voiture.marque }} ({{ selectedRendezvous.voiture.numero }})
+    </p>
+
+    <p-accordion *ngIf="selectedRendezvous?.details?.length > 0" [value]="0">
+        <p-accordion-panel *ngFor="let detail of selectedRendezvous.details , ; let i = index" [value]="i">
+            <p-accordion-header>
+                {{ detail.categorie }} - {{ detail.service }} : {{ detail.prix }} Ar
+            </p-accordion-header>
+            <p-accordion-content>
+                <p-card>
+                    <p><strong>Outils :</strong></p>
+                    <ul>
+                        <li *ngFor="let outil of detail.outils">
+                            ({{ outil.unite }}) {{ outil.libelle }} - {{ outil.prix }} Ar
+                        </li>
+                    </ul>
+                </p-card>
+            </p-accordion-content>
+        </p-accordion-panel>
+    </p-accordion>
+</p-dialog>
+
+
+<p-dialog header="Messagerie" [(visible)]="visiblediscuter" [position]="positionModal" [modal]="true" >
+    
+    <div class="flex flex-col space-y-2 p-2 h-80 overflow-y-auto">
+        <!-- Message reçu -->
+        <div class="flex items-end space-x-2">
+            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-400 text-white font-bold">
+                MS
+            </div>
+            <div class="bg-gray-200 text-gray-800 p-2 rounded-lg max-w-xs">
+                Bonjour ! Comment puis-je vous aider ?
+            </div>
+        </div>
+
+        <!-- Message envoyé -->
+        <div class="flex justify-end items-end space-x-2">
+            <div class="bg-blue-500 text-white p-2 rounded-lg max-w-xs">
+                J'aimerais prendre un rendez-vous.
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold">
+                DR
+            </div>
+        </div>
+
+        <!-- Autre message reçu -->
+        <div class="flex items-end space-x-2">
+            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-400 text-white font-bold">
+                MS
+            </div>
+            <div class="bg-gray-200 text-gray-800 p-2 rounded-lg max-w-xs">
+                D'accord, quelle date vous conviendrait ?
+            </div>
+        </div>
+    </div>
+
+
+    <div class="flex items-center space-x-2 mt-4">
+        <button pButton class="p-button p-button-text p-button-rounded p-button-sm">
+            <i class="pi pi-paperclip text-gray-500"></i>
+        </button>
+        <textarea 
+            placeholder="Écrivez un message..." 
+            class="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+        ></textarea>
+        <button pButton class="p-button p-button-text p-button-rounded p-button-sm">
+            <i class="pi pi-send text-blue-500"></i>
+        </button>
+    </div>
+</p-dialog>
+
+
+<p-dialog header="Confirmer votre choix" [(visible)]="visiblevalideracheve" [position]="positionModal" [modal]="true" >
+    <div class="flex justify-end gap-2">
+        <p-button label="Valider" icon="pi pi-check" severity="primary" (click)="visiblevalideracheve = false" />
+        <p-button label="Refuser" icon="pi  pi-times" severity="secondary"  (click)="visiblevalideracheve = false" />
+    </div>
+</p-dialog>

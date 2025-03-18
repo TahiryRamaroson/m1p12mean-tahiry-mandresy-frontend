@@ -75,17 +75,10 @@ export class AppMenu {
 
         else if(profil == "mecanicien") {
             this.model = [
-            
                 {
-                    label: '',
-                    icon: 'pi pi-fw pi-briefcase',
-                    routerLink: ['/pages'],
+                    label: 'Mes Taches',
                     items: [
-                        {
-                            label: 'Accueil Mécanicien',
-                            icon: 'pi pi-fw pi-circle-off',
-                            routerLink: ['/accueilMecanicien']
-                        },
+                        { label: 'Gestion travaux', icon: 'pi pi-fw pi-wrench', routerLink: ['/tacheMeca'] },
                     ]
                 },
             ]
