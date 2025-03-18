@@ -91,7 +91,7 @@
                 <p-accordion-content>
                     <p-card>
                         <div class="font-semibold  mb-4">Ajouter les outils necessaires</div>
-                       
+                        
                            <!-- Boucle sur les outils ajoutés dynamiquement -->
                         <div *ngFor="let outil of outilsParDetail[detail.id]; let i = index" class="flex gap-4 mb-4 flex-wrap">
                             <div class="flex items-center gap-4 flex-auto">
@@ -100,7 +100,7 @@
                             </div>
 
                             <div class="flex items-center gap-4 flex-auto">
-                                <label for="unite{{detail.id}}{{i}}" class="font-semibold w-24"> Unite </label>
+                                <label for="unite{{detail.id}}{{i}}" class="font-semibold w-24"> Unité </label>
                                 <input pInputText id="unite{{detail.id}}{{i}}" class="flex-auto" [(ngModel)]="outil.unite" type="number" />
                             </div>
 

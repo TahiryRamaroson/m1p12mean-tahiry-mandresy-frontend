@@ -58,12 +58,12 @@ export class GestionRendezvousComponent {
       id: 2,
       client: { nom: 'Martin', prenom: 'Sophie' },
       voiture: { marque: 'Peugeot', numero: '5678BC' },
-      dateRendezVous: '2025-03-05',
+      dateRendezVous: '2025-03-01',
       details: [
         { id:3, categorie: 'Carrosserie', service: 'Peinture', prix: 300,
           outils: [
-            { libelle: 'Peinture', prix: 200 },
-            { libelle: 'Pinceau', prix: 20 }
+            { libelle: 'Peinture',unite: 1, prix: 200 },
+            { libelle: 'Pinceau',unite: 1, prix: 20 }
           ]
         }
       ]
@@ -77,7 +77,8 @@ export class GestionRendezvousComponent {
     selectable: true,
     editable: true,
     events: this.rendezvousList.map(rdv => ({
-      title: `${rdv.client.nom} ${rdv.client.prenom} : (${rdv.voiture.numero})`,
+      id: rdv.id.toString(), 
+      title: `${rdv.client.nom} ${rdv.client.prenom} : ID : ${rdv.id} / (${rdv.voiture.numero})`,
       date: rdv.dateRendezVous
     })),
     eventClick: this.handleEventClick.bind(this)
@@ -85,6 +86,7 @@ export class GestionRendezvousComponent {
 
 
   positionModal: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright' = 'center';
+  
   
   //modal repondre rendez-vous
   visiblerepondre: boolean = false;
@@ -94,10 +96,11 @@ export class GestionRendezvousComponent {
   }
   selectedRendezvous: any = null; // Stocke le rendez-vous sélectionné
   handleEventClick(arg: any) {
-    const clickedDate = arg.event.startStr; // Récupérer la date cliquée
-    this.selectedRendezvous = this.rendezvousList.find(rdv => rdv.dateRendezVous === clickedDate);
+    const rdvId = parseInt(arg.event.id, 10);
+    this.selectedRendezvous = this.rendezvousList.find(rdv => rdv.id === rdvId);
     this.openModalRepondre('center');
   }
+
 
   //modal confirmer rendez-vous
   mecaniciens = [
@@ -113,10 +116,13 @@ export class GestionRendezvousComponent {
     this.visiblevalider = true;
   }
 
+
   //modal refuser rendez-vous
   visiblerefuser: boolean = false;
   openModalRefuser(postition: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright') {
     this.positionModal = postition;
     this.visiblerefuser = true;
   }
+
+
 }
