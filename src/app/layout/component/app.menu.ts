@@ -38,18 +38,23 @@ export class AppMenu {
                             routerLink: ['/accueilClient']
                         },
                         {
-                            label: 'Mes demandes de devis',
-                            icon: 'pi pi-fw pi-file',
-                            routerLink: ['/demandeDevisClient']
-                        },
-                        {
                             label: 'Mes véhicules',
                             icon: 'pi pi-fw pi-car',
                             routerLink: ['/vehiculesClient']
                         },
                         {
+                            label: 'Faire un devis',
+                            icon: 'pi pi-fw pi-file-edit',
+                            routerLink: ['/faireDevisClient']
+                        },
+                        {
+                            label: 'Mes demandes de devis',
+                            icon: 'pi pi-fw pi-copy',
+                            routerLink: ['/demandeDevisClient']
+                        },
+                        {
                             label: 'Historiques de rendez-vous',
-                            icon: 'pi pi-fw pi-calendar',
+                            icon: 'pi pi-fw pi-calendar-clock',
                             routerLink: ['/historiqueRendezVousClient']
                         },
                     ]
