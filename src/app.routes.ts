@@ -17,6 +17,11 @@ import { SatisfactionClientComponent } from './app/pages/manager/satisfaction-cl
 import { GestionMecanicienComponent } from './app/pages/manager/gestion-mecanicien/gestion-mecanicien.component';
 import { ReponseDevisComponent } from './app/pages/manager/reponse-devis/reponse-devis.component';
 import { GestionRendezvousComponent } from './app/pages/manager/gestion-rendezvous/gestion-rendezvous.component';
+import { GestionGarageEntretienComponent } from './app/pages/manager/gestion-garage-entretien/gestion-garage-entretien.component';
+import { GestionGarageReparationComponent } from './app/pages/manager/gestion-garage-reparation/gestion-garage-reparation.component';
+import { GestionGarageSpecialiteComponent } from './app/pages/manager/gestion-garage-specialite/gestion-garage-specialite.component';
+import { GestionGarageMarqueComponent } from './app/pages/manager/gestion-garage-marque/gestion-garage-marque.component';
+import { GestionGarageModeleComponent } from './app/pages/manager/gestion-garage-modele/gestion-garage-modele.component';
 
 export const appRoutes: Routes = [
     { path: '', component: Login }, //rehefa vao miditra dia Login
@@ -40,6 +45,11 @@ export const appRoutes: Routes = [
             { path: 'gestionMecanicienComponent', component: GestionMecanicienComponent },
             { path: 'reponseDevis', component: ReponseDevisComponent},
             { path: 'gestionRendezvous', component: GestionRendezvousComponent },
+            { path: 'gestionGarageEntretien', component: GestionGarageEntretienComponent},
+            { path: 'gestionGarageReparation', component: GestionGarageReparationComponent},
+            { path: 'gestionGarageSpecialite', component: GestionGarageSpecialiteComponent},
+            { path: 'gestionGarageMarque', component: GestionGarageMarqueComponent},
+            { path: 'gestionGarageModele', component: GestionGarageModeleComponent}
         ]
     },
 

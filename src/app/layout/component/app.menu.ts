@@ -53,7 +53,7 @@ export class AppMenu {
                             routerLink: ['/demandeDevisClient']
                         },
                         {
-                            label: 'Historiques de rendez-vous',
+                            label: 'Historique des rendez-vous',
                             icon: 'pi pi-fw pi-calendar-clock',
                             routerLink: ['/historiqueRendezVousClient']
                         },
@@ -67,7 +67,7 @@ export class AppMenu {
                 {
                     label: 'Tableau de bord',
                     items: [
-                        { label: 'Satisfaction client', icon: 'pi pi-fw pi-chart-line', routerLink: ['/satisfactionClient'] },
+                        { label: 'Satisfaction client', icon: 'pi pi-fw pi-heart', routerLink: ['/satisfactionClient'] },
                         { label: 'Chiffre d`affaire', icon: 'pi pi-fw pi-wallet', routerLink: [''] },
                         { label: 'Facturation', icon: 'pi pi-fw pi-chart-bar', class: 'rotated-icon', routerLink: [''] }
                     ]
@@ -75,7 +75,42 @@ export class AppMenu {
                 {
                     label: 'Mes Taches',
                     items: [
-                        { label: 'Gestion mécanicien', icon: 'pi pi-fw pi-wrench', routerLink: ['/gestionMecanicienComponent'] },
+                        {
+                            label: 'Gestion garage',
+                            icon: 'pi pi-fw pi-warehouse',
+                            items: [
+                                { 
+                                    label: 'Mécanicien', 
+                                    icon: 'pi pi-fw pi-user-edit', 
+                                    routerLink: ['/gestionMecanicienComponent'] 
+                                },
+                                { 
+                                    label: 'Spécialité mécanicien', 
+                                    icon: 'pi pi-fw pi-graduation-cap', 
+                                    routerLink: ['gestionGarageSpecialite'] 
+                                },
+                                {
+                                    label: 'Entretien',
+                                    icon: 'pi pi-fw pi-gauge',
+                                    routerLink: ['gestionGarageEntretien']
+                                },
+                                {
+                                    label: 'Réparation',
+                                    icon: 'pi pi-fw pi-wrench',
+                                    routerLink: ['gestionGarageReparation']
+                                },
+                                {
+                                    label: 'Marque de véhicule',
+                                    icon: 'pi pi-fw pi-car',
+                                    routerLink: ['gestionGarageMarque']
+                                },
+                                {
+                                    label: 'Modèle de véhicule',
+                                    icon: 'pi pi-fw pi-car',
+                                    routerLink: ['gestionGarageModele']
+                                }
+                            ]
+                        },
                         { label: 'Gestion rendez-vous', icon: 'pi pi-fw pi-calendar-clock', routerLink: ['/gestionRendezvous'] },
                         { label: 'Réponse aux devis', icon: 'pi pi-fw pi-send', class: 'rotated-icon', routerLink: ['/reponseDevis'] }
                     ]
