@@ -2,6 +2,10 @@ import { Routes } from '@angular/router';
 import { AppLayout } from './app/layout/component/app.layout';
 import { Notfound } from './app/pages/notfound/notfound';
 import { Login } from './app/pages/auth/login';
+import { Access } from './app/pages/auth/access';
+import { Error } from './app/pages/auth/error';
+import { InscriptionComponent } from './app/pages/auth/inscription/inscription.component';
+import { LoginEmployeComponent } from './app/pages/auth/login-employe/login-employe.component';
 
 import { AccueilClientComponent } from './app/pages/client/accueil-client/accueil-client.component';
 import { DemandeDevisClientComponent } from './app/pages/client/demande-devis-client/demande-devis-client.component';
@@ -54,6 +58,10 @@ export const appRoutes: Routes = [
     },
 
     //eto ivelany otran'izao izay tsy mila navbar
+    { path: 'loginEmploye', component: LoginEmployeComponent },
+    { path: 'inscription', component: InscriptionComponent },
     { path: 'notfound', component: Notfound },
+    { path: 'access', component: Access },
+    { path: 'error', component: Error },
     { path: '**', redirectTo: '/notfound' }
 ];
