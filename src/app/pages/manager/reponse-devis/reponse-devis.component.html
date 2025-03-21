@@ -1,0 +1,126 @@
+<div class="card">  
+    <div class="font-semibold text-xl mb-4">Liste des devis non répondus</div>
+    <p-table
+        [value]="devis"
+        [rowHover]="true"
+        [showGridlines]="true"
+        responsiveLayout="scroll"
+        class="custom-table" 
+    >
+        <ng-template #caption>
+            <div class="flex justify-between items-center flex-column sm:flex-row">
+                <div class="flex gap-2 ml-auto">
+                    <button (click)="openModalFilter('top')" pButton label="FILTRER" class="p-button-primary" icon="pi pi-filter"></button>
+                    <p-button class="p-button-outlined" icon="pi pi-filter-slash" severity="danger"/>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template #header>
+            <tr>
+                <th style="min-width: 8rem">Id</th>
+                <th style="min-width: 12rem">Client</th>
+                <th style="min-width: 10rem">Voiture</th>
+                <th style="min-width: 10rem">Date demande</th>
+                <th style="min-width: 1rem"></th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-devis>
+            <tr>
+                <td>{{ devis.id }}</td>
+                <td>{{ devis.client.nom }} {{ devis.client.prenom }}</td>
+                <td>{{ devis.voiture.marque }} {{ devis.voiture.numero }}</td>
+                <td>{{ devis.dateDemande }}</td>
+                <td><p-button (click)="openModalRepondre('topright' , devis)" severity="success" icon="pi pi-check" rounded pTooltip="répondre"/></td>
+            </tr>
+        </ng-template>
+
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="6">No products found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <!-- Pagination -->
+    <div class="card flex justify-center">
+        <p-paginator
+            [first]="0"
+            [rows]="10"
+            [totalRecords]="120"
+            [showCurrentPageReport]="true"
+            [showJumpToPageDropdown]="false"
+            currentPageReportTemplate="Affiché {first} à {last} pour {totalRecords}" 
+        />
+    </div>
+</div>
+
+
+<p-dialog header="Option du filtre" [(visible)]="visiblefiltre" [position]="positionModal" [modal]="true" >
+    <div class="flex items-center gap-2 mb-8">
+        <label for="id" class="font-semibold w-24">Id</label>
+        <input pInputText id="id" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex items-center gap-2 mb-8">
+        <label for="nomclient" class="font-semibold w-24">Nom client</label>
+        <input pInputText id="nom&prenom" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex items-center gap-2 mb-8">
+        <label for="numvoiture" class="font-semibold w-24">Num voiture</label>
+        <input pInputText id="nom&prenom" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex items-center gap-2 mb-8">
+        <label for="datedemandemin" class="font-semibold w-24">Date du demande (min)</label>
+        <p-datepicker [appendTo]="'body'"[showIcon]="true" [showButtonBar]="true" ></p-datepicker>
+    </div>
+    <div class="flex items-center gap-2 mb-8">
+        <label for="datedemandemax" class="font-semibold w-24">Date du demande (max)</label>
+        <p-datepicker [appendTo]="'body'"[showIcon]="true" [showButtonBar]="true" ></p-datepicker>
+    </div>
+    <div class="flex justify-end gap-2">
+        <p-button label="Annuler" severity="secondary" (click)="visiblefiltre = false" />
+        <p-button label="Filtrer" [loading]="loading" (click)="load()" />
+    </div>
+</p-dialog>
+
+
+<p-dialog header="Reponse au devis {{ selectedDevis?.id }}" [(visible)]="visiblerepondre" [position]="positionModal" [modal]="true" >   
+    <p-accordion>
+        <p-accordion-panel *ngFor="let detail of selectedDevis?.details; let i = index" [value]="i">
+            <p-accordion-header>{{ detail.categorie }} - {{ detail.service }} : {{ detail.prix }} Ar</p-accordion-header>
+                <p-accordion-content>
+                    <p-card>
+                        <div class="font-semibold  mb-4">Ajouter les outils necessaires</div>
+                        
+                           <!-- Boucle sur les outils ajoutés dynamiquement -->
+                        <div *ngFor="let outil of outilsParDetail[detail.id]; let i = index" class="flex gap-4 mb-4 flex-wrap">
+                            <div class="flex items-center gap-4 flex-auto">
+                                <label for="libelle{{detail.id}}{{i}}" class="font-semibold w-24"> Libellé </label>
+                                <input pInputText id="libelle{{detail.id}}{{i}}" class="flex-auto" [(ngModel)]="outil.libelle" />
+                            </div>
+
+                            <div class="flex items-center gap-4 flex-auto">
+                                <label for="unite{{detail.id}}{{i}}" class="font-semibold w-24"> Unité </label>
+                                <input pInputText id="unite{{detail.id}}{{i}}" class="flex-auto" [(ngModel)]="outil.unite" type="number" />
+                            </div>
+
+                            <div class="flex items-center gap-4 flex-auto">
+                                <label for="prix{{detail.id}}{{i}}" class="font-semibold w-24"> Prix (en Ar) </label>
+                                <input pInputText id="prix{{detail.id}}{{i}}" class="flex-auto" [(ngModel)]="outil.prix" type="number" />
+                            </div>
+
+                            <!-- Bouton de suppression -->
+                            <button pButton type="button" icon="pi pi-trash" severity="danger" (click)="supprimerOutil(detail.id, i)"></button>
+                        </div>
+                     <!-- Bouton pour ajouter un outil -->
+                     <button outlined  pButton type="button" label="Ajouter un outil" icon="pi pi-plus" (click)="ajouterOutil(detail.id)"></button>
+                    </p-card>
+                </p-accordion-content>
+        </p-accordion-panel>
+    </p-accordion>
+    <br>
+    <div class="flex justify-end gap-2">
+        <p-button label="Annuler" severity="secondary" (click)="visiblerepondre = false" />
+        <p-button label="Enregistrer" icon="pi pi-check" (click)="visiblerepondre = false" />
+    </div>
+</p-dialog>

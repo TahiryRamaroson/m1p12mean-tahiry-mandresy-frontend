@@ -1,0 +1,58 @@
+<div class="card">  
+    <p class="text-lg font-bold mb-4">Gestion des Rendez-vous</p>
+    <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
+
+
+<p-dialog header="Réponse à la Rendez-vous" [(visible)]="visiblerepondre" [position]="positionModal" [modal]="true" >
+    <p *ngIf="selectedRendezvous">
+        <strong>Client :</strong> {{ selectedRendezvous.client.nom }} {{ selectedRendezvous.client.prenom }} <br>
+        <strong>Voiture :</strong> {{ selectedRendezvous.voiture.marque }} ({{ selectedRendezvous.voiture.numero }})
+    </p>
+
+    <p-accordion *ngIf="selectedRendezvous?.details?.length > 0" [value]="0">
+        <p-accordion-panel *ngFor="let detail of selectedRendezvous.details , ; let i = index" [value]="i">
+            <p-accordion-header>
+                {{ detail.categorie }} - {{ detail.service }} : {{ detail.prix }} Ar
+            </p-accordion-header>
+            <p-accordion-content>
+                <p-card>
+                    <p><strong>Outils :</strong></p>
+                    <ul>
+                        <li *ngFor="let outil of detail.outils">
+                            ({{ outil.unite }}) {{ outil.libelle }} - {{ outil.prix }} Ar
+                        </li>
+                    </ul>
+                </p-card>
+            </p-accordion-content>
+        </p-accordion-panel>
+    </p-accordion>
+    <br>
+    <div class="flex justify-end gap-2">
+        <p-button label="Valider" icon="pi pi-check" severity="primary" (click)="openModalValider('center')" />
+        <p-button label="Refuser" icon="pi  pi-times" severity="secondary"  (click)="openModalRefuser('center')" />
+    </div>
+</p-dialog>
+
+
+<p-dialog header="Confirmer votre choix" [(visible)]="visiblevalider" [position]="positionModal" [modal]="true" >
+    <div class="flex items-center gap-4 mb-4">
+        <label for="mecanicien" class="font-semibold w-24"> Mécanicien </label>
+        <p-select [appendTo]="'body'" [options]="mecaniciens" id="mecanicien" class="flex-auto" [editable]="true" optionLabel="prenom" optionValue="id" />
+    </div>
+    <div class="flex justify-end gap-2">
+        <p-button label="Confirmer" (click)="visiblevalider = false" />
+    </div>
+</p-dialog>
+
+
+<p-dialog header="Confirmer votre choix" [(visible)]="visiblerefuser" [position]="positionModal" [modal]="true" >
+    <div class="flex items-center gap-4 mb-4">
+        <label for="commentaire" class="font-semibold w-24"> Commentaire </label>
+        <textarea rows="5" cols="30" pTextarea ></textarea>
+    </div>
+   
+    <div class="flex justify-end gap-2">
+        <p-button label="Confirmer" severity="danger"  (click)="visiblevalider = false" />
+    </div>
+</p-dialog>

@@ -1,0 +1,15 @@
+<div class="card p-4">
+    <h2 class="text-xl font-bold mb-4">Prendre un rendez-vous</h2>
+    <full-calendar [options]="calendarOptions"></full-calendar>
+
+    <!-- Modal pour confirmer la demande de rendez-vous -->
+    <p-dialog header="Confirmer le rendez-vous" [(visible)]="displayModal" [modal]="true" [closable]="true" [style]="{width: '50vw'}">
+        <div class="p-fluid">
+            <p>Voulez-vous envoyer une demande de rendez-vous pour la date sélectionnée ?</p>
+        </div>
+        <div class="p-dialog-footer mt-4 flex-wrap">
+            <p-button label="Envoyer" icon="pi pi-check" severity="info" (click)="confirmerDemande()"></p-button>
+            <p-button label="Annuler" icon="pi pi-times" severity="danger" (click)="hideModal()" class="p-button-secondary"></p-button>
+        </div>
+    </p-dialog>
+</div>

@@ -1,0 +1,24 @@
+<div class="card p-4 flex flex-col justify-center items-center gap-4">
+    <h2 class="text-center font-bold text-[#10B981]">Faire un devis</h2>
+    <form (ngSubmit)="soumettreDevis()" class="md:w-3/4 sm:w-full p-10 shadow-xl flex flex-col justify-center items-center gap-4 rounded-lg">
+        <div class="p-field text-center">
+            <h5>Véhicule</h5>
+            <p-dropdown id="voiture" [(ngModel)]="voitureSelectionnee" [options]="voitures" optionLabel="marqueModele" placeholder="Sélectionner un véhicule" name="voiture" required></p-dropdown>
+        </div>
+        <div class="p-field text-center mt-4">
+            <h5>Catégorie</h5>
+            <p-multiSelect id="services" [(ngModel)]="servicesSelectionnes" [options]="services" (onChange)="nettoyerDetailsSelectionnes()" optionLabel="nom" placeholder="Sélectionner les catégories" name="services" required></p-multiSelect>
+        </div>
+        <div class="grid grid-cols-1 gap-4 text-center">
+            <div *ngFor="let service of services">
+                <div *ngIf="isServiceSelected(service.nom)">
+                    <h5>{{service.nom}}</h5>
+                    <p-multiSelect id="detailServices" [(ngModel)]="detailsSelectionnes[service.nom]" [options]="service.details" optionLabel="nom" placeholder="Sélectionner les services" name="detailServices"></p-multiSelect>
+                </div>
+            </div>
+        </div>
+        <div class="p-field">
+            <p-button label="Soumettre" icon="pi pi-check" type="submit"></p-button>
+        </div>
+    </form>
+</div>
